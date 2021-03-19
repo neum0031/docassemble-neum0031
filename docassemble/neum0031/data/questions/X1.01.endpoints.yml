@@ -1,10 +1,7 @@
-# We keep all the endpoints and associated templates
-# in this file.
 ---
 objects:
   - endpoints: DADict
 ---
-# Displays an error message
 event: endpoints['error_screen']
 question: Error
 subquestion: |
@@ -16,22 +13,6 @@ buttons:
   - Exit: exit
   - Restart: restart
 ---
-# Final screen.
-#
-# This screen, most importantly, should tell the user
-# whether they can sue the other person for breach of
-# contract or not.  
-#
-# If they can't sue for breach of contract, then the 
-# screen should explain to them why can't and what they
-# can do.
-#
-# Finally, the screen explains that a written contract
-# is not important when it comes to determining whether
-# a contract exists or not.
-# We use the 'event' specifier to tell Docassemble this is
-# the final screen endpoint.  More information is at
-# https://docassemble.org/docs/questions.html#event
 event: endpoints['final_screen']
 question: Breach of Contract App
 subquestion: |
@@ -44,8 +25,6 @@ buttons:
   - Restart: restart
   - Exit: exit
 ---
-# Text to display explaining that a written contract is not necessary
-# when suing for breach of contract.
 template: MJFwritten_contract_template
 content: |
   **You do not need to write your contract down to prove you have a contract.**
@@ -63,7 +42,6 @@ content: |
   is evidence of what you promised, but it's not required to prove the
   promises ever existed.
 ---
-# What to display if the app determines a contract exists.
 template: MJFcontract_exists_template
 content: |
   Based on your responses, 
@@ -79,11 +57,6 @@ content: |
   ${ MJFwritten_contract_template }
   % endif
 ---
-# What to display it the app determines a contract doesn't exist.  This
-# template is quite a bit more complex than the exists template as 
-# we need to explain why the user can't sue.  The reasons why will
-# depend on the user's responses to any of the contract law questions
-# that we asked.
 template: MJFnot_contract_exists_template
 content: | 
   Based on your responses, you **may not be able to sue** for 

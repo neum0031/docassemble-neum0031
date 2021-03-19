@@ -45,7 +45,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
 setup(name='docassemble.neum0031',
       version='0.0.1',
       description=('A docassemble extension.'),
-      long_description='# docassemble.neum0031\n\nA docassemble extension.\n\n## Author\n\nJocelyn Neumueller, neum0031@flinders.edu.au\n\n',
+      long_description='# docassemble.neum0031\r\n\r\nA docassemble extension.\r\n\r\n## Author\r\n\r\nJocelyn Neumueller, neum0031@flinders.edu.au\r\n\r\n',
       long_description_content_type='text/markdown',
       author='Jocelyn Neumueller',
       author_email='neum0031@flinders.edu.au',
