@@ -1,0 +1,55 @@
+---
+# Asks the initial question
+# We populate MJFsue_reason with 'MJFpromisee' or 'MJFpromisor'.
+# These strings are easier work with than the long-form answer
+# we display to the user.
+# Ref: https://docassemble.org/docs/fields.html#radio
+#
+question: Why do you want to sue?
+fields:
+  - no label: MJFsue_reason
+    datatype: radio
+    choices:
+      - I paid for work that wasn't done: MJFpromisee
+      - Someody didn't pay me for work that I did: JJNpromisor
+---
+# Stores the description of the work that was requested
+question: Describe the work you did
+fields:
+  - no label: JJNwork_done
+    datatype: area
+---
+# We ask the two payment questions in a single question block
+question: Payment
+fields:
+  - How much did they agree to pay for this work?: JJNpayment_agreedpromisor
+    datatype: currency
+    min: 0
+under: |
+  If they have not yet agreed to pay anything, just leave the default value of $0.00
+---
+# Test for Offer and Acceptance
+# This code is going to ask two questions to make sure that
+question: Did the other person agree to pay for this work?
+fields:
+  - no label: MJFcertaintypromisor
+    datatype: radio
+    choices:
+      - Yes. The other person agreed to pay for exactly this work: MJFagree_exact
+      - Yes. The other person agreed to pay for some of this work but there was other work that was not agreed to that wasn't paid for: MJFagree_inexact
+      - No. The other person did not agree to pay for any of this work or all of this work: MJFdisagree
+---
+# Test for Consideration (and Certainty)
+# Because this is a Yes/No answer we store the results as boolean (ie: True/False)
+# values.  For more information on booleans check out C2.01 video.
+question: Payment for the Work
+subquestion: |
+  Did you and the other person agree how much they would pay for the work?
+fields:
+  - no label: MJFconsiderationpromisor
+    datatype: radio
+    choices:
+      - Yes, we agreed they would pay ${ currency(JJNpayment_agreedpromisor) } for the work: True
+      - No, we never reached a firm agreement on how much they should pay: False
+
+
